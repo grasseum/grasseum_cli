@@ -31,8 +31,10 @@ __executeHttp = function( join_path,action ){
         console.log("Method `setting` is missing in your "+confFilename+" script");
       }
       if(cnt_prepare_exec ==2){
-      //  grasseum_stream.prepare_execute(action);
-        grasseum_http.run_server();
+        console.log("This is a trial feature, further updates will come along the way");
+        settings.execute(grasseum_stream,action)
+      
+         
       }
     
 }
