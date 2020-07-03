@@ -1,0 +1,22 @@
+{
+  "name": "grasseum_cli",
+  "version": "1.0.1",
+  "description": "grasseum default package for con",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grasseum/grasseum_cli.git"
+  },
+  "keywords": [
+    "concat"
+  ],
+  "author": "Pein Freccs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grasseum/grasseum_cli/issues"
+  },
+  "homepage": "https://github.com/grasseum/grasseum_cli#readme"
+}
