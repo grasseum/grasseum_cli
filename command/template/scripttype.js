@@ -1,12 +1,12 @@
-
-var fs = require('fs');
-var compt = require("compts");
+const fs = require('fs');
+const structkit = require("structkit");
 const grasseumCore = require("grasseum_core");
-var str_template = '';
+let str_template = '';
+
 str_template += 'exports.module=function(grassconf){   \n';
-    
+
 str_template += '    grassconf.load("default",function(){\n';
-            
+
 str_template += '    return grassconf.src(["src/*"]) \n';
 str_template += '        .pipe(grassconf.dest("dest/" )); \n';
 
@@ -23,33 +23,49 @@ str_template += '    return lib;\n';
 str_template += '}    \n';
 
 
+exports.script_template = function (action) {
 
-exports.script_template = function(action){
-     
-    var getcwd = grasseumCore.terminal().getCwdParameter(action.argv.argv);
-   
-    var script_list = {
-        "script":function(){
-            fs.writeFile(action.argv.cwd+"/grassfile.js",str_template, function(err) {
-                if(err) {
-                    return console.log(err);
+    const getcwd = grasseumCore.terminal().getCwdParameter(action.argv.argv);
+
+    const script_list = {
+        "http" () {
+
+            fs.writeFile(action.argv.cwd+"/grasshttp.js", str_template, function (err) {
+
+                if (err) {
+
+                    console.log(err);
+
                 }
-            
+
                 console.log("The file was saved!");
-            }); 
+
+
+            });
+
         },
-       "http":function(){
-           fs.writeFile(action.argv.cwd+"/grasshttp.js",str_template, function(err) {
-               if(err) {
-                   return console.log(err);
-               }
-            
-               console.log("The file was saved!");
-           }); 
-       }
+        "script" () {
+
+            fs.writeFile(action.argv.cwd+"/grassfile.js", str_template, function (err) {
+
+                if (err) {
+
+                    console.log(err);
+
+                }
+
+                console.log("The file was saved!");
+
+            });
+
+        }
+
+    };
+
+    if (structkit.has(getcwd, "script")) {
+
+        script_list.script();
+
     }
 
-    if(compt._.has(getcwd,"script")){
-        script_list['script']()
-    }
-} 
+};
